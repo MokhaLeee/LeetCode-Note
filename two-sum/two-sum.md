@@ -68,3 +68,48 @@ sum = 6 == target  → 找到
 - sum < target → left++（需要更大）
 - sum > target → right--（需要更小）
 - sum == target → 找到
+
+```c
+static int *method2(const int *nums, int size, int target, int *return_size)
+{
+	int i, l, r;
+	struct m2_pair *arr;
+	int *result;
+
+	arr = malloc(sizeof(struct m2_pair) * size);
+
+	for (i = 0; i < size; i++) {
+		arr[i].val = nums[i];
+		arr[i].idx = i;
+	}
+
+	method2_sort(arr, size);
+
+	result = (int *)malloc(2 * sizeof(int));
+
+	l = 0, r = size - 1;
+	while (l < r) {
+		long sum = arr[l].val + arr[r].val;
+
+		if (sum == target) {
+			/* match! */
+			result[0] = arr[l].idx;
+			result[1] = arr[r].idx;
+			free(arr);
+
+			*return_size = 2;
+			return result;
+		}
+
+		if (sum < target)	
+			l++;
+		else
+			r--;
+	}
+
+	free(arr);
+	*return_size = 0;
+	free(result);
+	return NULL;
+}
+```
