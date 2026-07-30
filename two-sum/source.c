@@ -1,12 +1,31 @@
 #include <stdio.h>
 #include <stdlib.h>
 
+struct m2_pair {
+    int val;
+    int idx;
+};
+
+static method2_sort(struct m2_pair *arr, int num_size)
+
+__attribute_maybe_unused__
+static int *method2(const int *nums, int size, int target, int *return_size)
+{
+
+}
+
 __attribute_maybe_unused__
 static int *method1(const int *nums, int size, int target, int *return_size)
 {
 	int i, j;
-	int *result = (int *)malloc(2 * sizeof(int));
+	int *result;
 
+	/**
+	 * 双重循环:
+	 * 枚举每一对下标 (i, j)（j > i，避免用同一个元素两次），和等于 target 就返回。
+	 */
+
+	result = (int *)malloc(2 * sizeof(int));
 	*return_size = 2;
 
 	for (i = 0; i < size; i++) {
